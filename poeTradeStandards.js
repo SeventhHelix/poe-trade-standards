@@ -15,7 +15,6 @@ let SEARCH_RESULTS = $("#content > div > div > div.live-search-box.alert-box");
 
 let elementInBlacklist = function (name) {
     for (item of BLACKLIST) {
-        console.log("Checking " + name + " vs " + item);
         if (name.startsWith(item)) {
             return true;
         }
