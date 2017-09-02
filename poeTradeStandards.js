@@ -1,12 +1,28 @@
 ﻿let DIFF = 1;
 
 BLACKLIST = [
+    "rlevel_",
+    "sockets_",
+    "link_",
+    "linked_",
+
 ];
 
 let LOWER = "lower";
 let HIGHER = "higher";
 let SUBMIT_BUTTON = $("input:submit");
 let SEARCH_RESULTS = $("#content > div > div > div.live-search-box.alert-box");
+
+let elementInBlacklist = function (name) {
+    for (item of BLACKLIST) {
+        console.log("Checking " + name + " vs " + item);
+        if (name.startsWith(item)) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 window.changeStandards = function(method) {
     $.each($('input.num'),
@@ -15,6 +31,10 @@ window.changeStandards = function(method) {
             let val = parseInt(elem.val());
 
             if (!val) {
+                return;
+            }
+
+            if (elementInBlacklist(elem.attr('name'))) {
                 return;
             }
 
